@@ -135,11 +135,8 @@ public class WriteExcel {
 				if(idx!=-1) {
 					valueToWrite=valueToWrite.substring(0,idx)+valueToWrite.substring(idx+1);					
 				}
-//				style.setDataFormat(BuiltinFormats.getBuiltinFormat("text"))
 				cell.setCellValue(Double.parseDouble(valueToWrite));                    // Write the value to the cell
 				System.out.println(valueToWrite);
-//				System.out.println(Integer.parseInt(valueToWrite));
-
 
 				try (FileOutputStream outputStream = new FileOutputStream(filePath)) {              	// Write the updated workbook content to the same file
 					workbook.write(outputStream);
