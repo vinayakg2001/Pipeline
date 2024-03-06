@@ -6,6 +6,7 @@ package com.asis;
 
 //table//tr[1][@class='table-row']//a[1]
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -25,6 +26,7 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -46,8 +48,8 @@ public class ATOdata extends BaseClass {
 
 	// WebDriver instance
 
-	public static HashMap<String, String> clientData;
 	
+
 
 	/**
 	 * Method to get client data
@@ -58,6 +60,15 @@ public class ATOdata extends BaseClass {
 	public HashMap<String, String> getClientData() throws InterruptedException, IOException {
 		return ExcelUtil.getClientDetail(ATO_CLIENT_SHEET_NAME);
 
+	}
+	
+	public void tempFunc() {
+		tempData.add("Testing1");
+		tempData.add("Testing2");
+		tempData.add("Testing3");
+		tempData.add("Testing4");
+		System.out.println(tempData.toString());
+		
 	}
 
 	/**
@@ -78,7 +89,7 @@ public class ATOdata extends BaseClass {
 		clientNameSearch.sendKeys(clientData.get("client_name").trim());
 		Thread.sleep(3000);
 		clientNameSearch.sendKeys(Keys.ENTER);
-		System.out.println("clientName() run");
+		//System.out.println("clientName() run");
 	}
 	/**
 	 * Method to navigate to quarter name
@@ -172,24 +183,24 @@ public class ATOdata extends BaseClass {
 			System.out.println(jul_quater);
 			getQquaterData(jul_quater);
 			HashMap<String,Double> data = goToStatementDetail();
-			
+
 			ArrayList<QuaterData> last_jun_quater_data_row = new ArrayList<>();
-			
+
 			last_jun_quater_data_row.add(qd_lastJune);
-			row_data.add(last_jun_quater_data_row);
+			ATO_ROW_DATA.add(last_jun_quater_data_row);
 
 			ArrayList<QuaterData> jul_quater_data_row = new ArrayList<>();
-			
+
 			jul_quater_data_row.add(qd_jul);
-			row_data.add(jul_quater_data_row);
+			ATO_ROW_DATA.add(jul_quater_data_row);
 
 			ArrayList<QuaterData> aug_quater_data_row = new ArrayList<>();
-			
+
 			aug_quater_data_row.add(qd_aug);
-			row_data.add(aug_quater_data_row);
+			ATO_ROW_DATA.add(aug_quater_data_row);
 
 			ArrayList<QuaterData> sept_quater_data_row = new ArrayList<>();
-								
+
 			qd_sept.set_G1(data.get("G1"),true);
 			qd_sept.set_1A(data.get("1A"),true);
 			qd_sept.set_1B(data.get("1B"),true);
@@ -198,7 +209,7 @@ public class ATOdata extends BaseClass {
 			qd_sept.set_GST_Refund(qd_sept.get_1A() - qd_sept.get_1B(),true);
 			qd_sept.set_ATO_Total_Refund((qd_sept.get_GST_Refund() + qd_sept.get_4() + qd_sept.get_5A() - qd_sept.get_7D()),true);
 			sept_quater_data_row.add(qd_sept);
-			row_data.add(sept_quater_data_row);
+			ATO_ROW_DATA.add(sept_quater_data_row);
 		}
 		if(!oct_quarter.isBlank()) {
 			System.out.println(oct_quarter);
@@ -206,18 +217,18 @@ public class ATOdata extends BaseClass {
 			HashMap<String,Double> data = goToStatementDetail();
 
 			ArrayList<QuaterData> oct_quater_data_row = new ArrayList<>();
-			
+
 			oct_quater_data_row.add(qd_oct);
-			row_data.add(oct_quater_data_row);
+			ATO_ROW_DATA.add(oct_quater_data_row);
 
 
 			ArrayList<QuaterData> nov_quater_data_row = new ArrayList<>();
-			
+
 			nov_quater_data_row.add(qd_nov);
-			row_data.add(nov_quater_data_row);
+			ATO_ROW_DATA.add(nov_quater_data_row);
 
 			ArrayList<QuaterData> dec_quater_data_row = new ArrayList<>();
-			
+
 			qd_dec.set_G1(data.get("G1"),true);
 			qd_dec.set_1A(data.get("1A"),true);
 			qd_dec.set_1B(data.get("1B"),true);
@@ -226,7 +237,7 @@ public class ATOdata extends BaseClass {
 			qd_dec.set_GST_Refund(qd_dec.get_1A() - qd_dec.get_1B(),true);
 			qd_dec.set_ATO_Total_Refund(qd_dec.get_GST_Refund() + qd_dec.get_4() + qd_dec.get_5A() - qd_dec.get_7D(),true);
 			dec_quater_data_row.add(qd_dec);
-			row_data.add(dec_quater_data_row);
+			ATO_ROW_DATA.add(dec_quater_data_row);
 		}
 		if(!jan_quarter.isBlank()) {
 			System.out.println(jan_quarter);
@@ -234,18 +245,18 @@ public class ATOdata extends BaseClass {
 			HashMap<String,Double> data = goToStatementDetail();
 
 			ArrayList<QuaterData> jan_quater_data_row = new ArrayList<>();
-			
+
 			jan_quater_data_row.add(qd_jan);
-			row_data.add(jan_quater_data_row);
+			ATO_ROW_DATA.add(jan_quater_data_row);
 
 
 			ArrayList<QuaterData> feb_quater_data_row = new ArrayList<>();
-			
+
 			feb_quater_data_row.add(qd_feb);
-			row_data.add(feb_quater_data_row);
+			ATO_ROW_DATA.add(feb_quater_data_row);
 
 			ArrayList<QuaterData> mar_quater_data_row = new ArrayList<>();
-			
+
 			qd_mar.set_G1(data.get("G1"),true);
 			qd_mar.set_1A(data.get("1A"),true);
 			qd_mar.set_1B(data.get("1B"),true);
@@ -254,26 +265,26 @@ public class ATOdata extends BaseClass {
 			qd_mar.set_GST_Refund(qd_mar.get_1A() - qd_mar.get_1B(),true);
 			qd_mar.set_ATO_Total_Refund(qd_mar.get_GST_Refund() + qd_mar.get_4() + qd_mar.get_5A() - qd_mar.get_7D(),true);
 			mar_quater_data_row.add(qd_mar);
-			row_data.add(mar_quater_data_row);
+			ATO_ROW_DATA.add(mar_quater_data_row);
 		}
 		if(!apr_quarter.isBlank()) {
-			
+
 			System.out.println(apr_quarter);
 			getQquaterData(apr_quarter);
 			HashMap<String,Double> data = goToStatementDetail();
 
 			ArrayList<QuaterData> apr_quater_data_row = new ArrayList<>();
-			
+
 			apr_quater_data_row.add(qd_apr);
-			row_data.add(apr_quater_data_row);
+			ATO_ROW_DATA.add(apr_quater_data_row);
 
 			ArrayList<QuaterData> may_quater_data_row = new ArrayList<>();
-			
+
 			may_quater_data_row.add(qd_may);
-			row_data.add(may_quater_data_row);
+			ATO_ROW_DATA.add(may_quater_data_row);
 
 			ArrayList<QuaterData> jun_quater_data_row = new ArrayList<>();
-			
+
 			qd_jun.set_G1(data.get("G1"),true);
 			qd_jun.set_1A(data.get("1A"),true);
 			qd_jun.set_1B(data.get("1B"),true);
@@ -282,13 +293,19 @@ public class ATOdata extends BaseClass {
 			qd_jun.set_GST_Refund(qd_jun.get_1A() - qd_jun.get_1B(),true);
 			qd_jun.set_ATO_Total_Refund(qd_jun.get_GST_Refund() + qd_jun.get_4() + qd_jun.get_5A() - qd_jun.get_7D(),true);
 			jun_quater_data_row.add(qd_jun);
-			row_data.add(jun_quater_data_row);
+			ATO_ROW_DATA.add(jun_quater_data_row);
+			
+			HashMap<String, Double> hm1 = new HashMap<>();
+			hm1.put("June BAS", qd_jun.get_ATO_Total_Refund());
+			LAST_TABLE_DATA.add(hm1);
 		}
 	}
-	
+
 	public void getXeroData() {
 		ArrayList<QuaterData> xero_data = new ArrayList<>();
 		QuaterData xeroObj = new QuaterData("As per the book");
+//		XeroTesting obj=new XeroTesting();
+//		List<String> ans = obj.captureA1G1B1Data();
 		xeroObj.set_G1(51020.00,false);
 		xeroObj.set_1A(4517.95,false);
 		xeroObj.set_1B(7150.36,false);
@@ -298,7 +315,7 @@ public class ATOdata extends BaseClass {
 		xeroObj.set_ATO_Total_Refund(xeroObj.get_GST_Refund() + xeroObj.get_4() + xeroObj.get_5A() - xeroObj.get_7D(),false);
 		xero_data.add(xeroObj);
 		XERO_DATA.add(xero_data);
-		
+
 		ArrayList<QuaterData> variance_data = new ArrayList<>();
 		QuaterData variance = new QuaterData("Variance");
 		variance.set_G1(QuaterData.getTotal_of_year_G1() - xeroObj.get_G1(),false);
@@ -310,7 +327,7 @@ public class ATOdata extends BaseClass {
 		variance.set_ATO_Total_Refund(variance.get_GST_Refund() + variance.get_4() + variance.get_5A() - variance.get_7D(),false);
 		variance_data.add(variance);
 		XERO_DATA.add(variance_data);	
-		
+
 		ArrayList<QuaterData> bas_relodged_data = new ArrayList<>();
 		QuaterData bas_relodged = new QuaterData("BAS to be relodged for Period ended Jun 23");
 		bas_relodged.set_G1(qd_jun.get_G1() - variance.get_G1(),false);
@@ -323,13 +340,16 @@ public class ATOdata extends BaseClass {
 		bas_relodged_data.add(bas_relodged);
 		XERO_DATA.add(bas_relodged_data);	
 	}
-	
+
 	public void generateExcel() {
+		String[] client_data = {clientData.get("client_name").trim(), clientData.get("to_date").trim()};
+		//clientData.get("client_name").trim();
+		//clientData.get("to_date").trim();
 		Excel obj = new Excel();
-		obj.createFinancialSummaryExcelWithData("Final_data.xls", row_data, XERO_DATA);
+		obj.createFinancialSummaryExcelWithData("Final_data.xls", ATO_ROW_DATA, XERO_DATA, ACTIVITY_STATEMENT_DATA,client_data);
 	}
-	
-	
+
+
 	/**
 	 * Method to get quarter data
 	 * @param quater_statement_name
@@ -353,7 +373,6 @@ public class ATOdata extends BaseClass {
 				}	
 			}
 		}else {
-
 			js.executeScript("arguments[0].click();", statements.get(0).findElement(By.xpath(".//parent::a")));
 		}		
 	}
@@ -407,10 +426,13 @@ public class ATOdata extends BaseClass {
 	}
 
 	public void gotoICAStatement() throws InterruptedException {
-
+		Thread.sleep(2000);
+		js.executeScript("window.scrollBy(0,-250)");
+		
+		Thread.sleep(2000);
 		WebElement accountsAnsPayments =  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@role='menubar']//span[contains(text(),'Accounts and payments')]")));
+//		js.executeScript("arguments[0].scrollIntoView(true)", accountsAnsPayments);
 		accountsAnsPayments.click();
-
 		List<WebElement> options = wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//div[@role='menubar']//span[contains(text(),'Accounts and payments')]/parent::div/following-sibling::ul/li")));
 		for(WebElement option:options) {
 			if(option.getText().trim().equalsIgnoreCase("Tax accounts")) {
@@ -421,13 +443,11 @@ public class ATOdata extends BaseClass {
 		WebElement activityStatements =  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[contains(text(),'Activity statement')]/ancestor::div[@class='row table-panel-header']/following-sibling::div//span[contains(text(),'Activity statement ')]/parent::a")));
 		activityStatements.click();
 
-
 		WebElement filter =  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[contains(text(),'Filter')]/parent::a")));
 		js.executeScript("arguments[0].scrollIntoView(true)", filter);
 		Thread.sleep(1000);
 
 		filter.click();
-
 
 		WebElement fromDate =  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[contains(@id,'from-date')]")));
 		fromDate.clear();
@@ -446,9 +466,8 @@ public class ATOdata extends BaseClass {
 
 		WebElement printFriendlyVersion =  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[contains(text(),'Print-friendly version')]")));
 		js.executeScript("arguments[0].click();", printFriendlyVersion);
-
 	}
-
+	
 	public void fetchICAStatementData() {
 		ArrayList<String> tabs = new ArrayList<String>(driver.getWindowHandles());
 		driver.switchTo().window(tabs.get(1));
@@ -462,35 +481,37 @@ public class ATOdata extends BaseClass {
 				for(WebElement td: tdData) {
 					tdRowData.add(td.getText());
 				}
-				activityStatementData.add(tdRowData);
+				ACTIVITY_STATEMENT_DATA.add(tdRowData);
 			}else {
 			}			
 		}
 		driver.close();
 		driver.switchTo().window(tabs.get(0));
+		/*System.out.println("ACTIVITY_STATEMENT_DATA");
+		for(ArrayList<String> node : ACTIVITY_STATEMENT_DATA) {
+			System.out.println("[");
+			for(String value : node) {
+				System.out.print(value+", ");
+			}
+			System.out.print("]");
+		}*/
+		
 	}
 	public static void main(String[] args) throws InterruptedException, IOException, ParseException {
 
 		ATOdata obj = new ATOdata(); 
 
 		obj.setupDriver();
-		obj.lauchSite();
-		obj.login();
+		obj.lauchSite("https://onlineservices.ato.gov.au/onlineservices/");
+		obj.login_ato();
 		obj.clientName();
-//		obj.gotoICAStatement();
-//		obj.fetchICAStatementData();
-
 		obj.goToQuarterName();
 		obj.setToDateFromDate();
 		obj.matchingQuarter();
 		obj.getXeroData();
+		obj.gotoICAStatement();
+		obj.fetchICAStatementData();
 		obj.generateExcel();
-
-		//HashMap<String, Object> clientData = ExcelUtil.getClientDetail("Client_data");
-		//data = ExcelUtil.getUserLoginDetail("Login_detail");
-		//System.out.println(Arrays.deepToString(data));
-		//System.out.println(clientData);
-		//System.out.println(clientData.get("apr_quarter"));
 
 	}
 

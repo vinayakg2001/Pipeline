@@ -1,48 +1,44 @@
-<project xmlns="https://maven.apache.org/POM/4.0.0" xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>com.asis</groupId>
-  <artifactId>Xero</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  <name>Xero</name>
+<project xmlns="https://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.asis</groupId>
+	<artifactId>Xero</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>Xero</name>
+	<dependencies>
 
-    <dependencies>
-    	<!-- <dependency>
-    		<groupId>com.asis</groupId>
-    		<artifactId>ReadDownloadingFiles</artifactId>
-    		<version>0.0.1-SNAPSHOT</version>
-    	</dependency>
-    	<dependency>
-    		<groupId>com.asis</groupId>
-    		<artifactId>GSTRec</artifactId>
-    		<version>0.0.1-SNAPSHOT</version>
-    	</dependency>
-    	-->
-    	<dependency>
-      <groupId>commons-io</groupId>
-      <artifactId>commons-io</artifactId>
-      <version>2.15.1</version>
-    </dependency>
-      <dependency>
-    <groupId>org.apache.poi</groupId>
-    <artifactId>poi</artifactId>
-    <version>5.1.0</version>
-</dependency>	
-<dependency>
-      <groupId>org.apache.poi</groupId>
-      <artifactId>poi-ooxml</artifactId>
-      <version>5.1.0</version>
- </dependency>
-    <dependency>
-      <groupId>org.seleniumhq.selenium</groupId>
-      <artifactId>selenium-java</artifactId>
-      <version>4.17.0</version>
-    </dependency>
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.15.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+			<version>5.1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-core</artifactId>
+			<version>2.14.1</version>
+		</dependency>
 
-  
-    <dependency>
-    	<groupId>com.asis</groupId>
-    	<artifactId>GSTRec</artifactId>
-    	<version>0.0.1-SNAPSHOT</version>
-    </dependency>
-    </dependencies>
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml</artifactId>
+			<version>5.1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-java</artifactId>
+			<version>4.17.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.asis</groupId>
+			<artifactId>GSTRec</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+	</dependencies>
 </project>

@@ -55,27 +55,25 @@ public final class ExcelUtil {
 	
 	public static String getUserLoginDetail( String sheetName) {
 		sheet = workbook.getSheet(sheetName);
-		return sheet.getRow(1).getCell(0).getStringCellValue();
-			
+		return sheet.getRow(1).getCell(0).getStringCellValue();			
 	}
 	
 	public static HashMap<String, String> getClientDetail( String sheetName) {
+		//System.out.println(sheetName+ " "+ "ExcelUtil");
 		HashMap<String, String> clientData = new HashMap<>();
 		
 		sheet = workbook.getSheet(sheetName);
 		int rowCount = sheet.getLastRowNum() - sheet.getFirstRowNum();
 		
 		for(int i = 1; i <= rowCount; i++) {			
-			row = sheet.getRow(i);
-			              
+			row = sheet.getRow(i);			              
 			clientData.put("client_name", row.getCell(0).toString());
 			clientData.put("from_date", row.getCell(1).toString());
 			clientData.put("to_date", row.getCell(2).toString());
 			clientData.put("jul_quater", row.getCell(3).getStringCellValue());
 			clientData.put("oct_quarter", row.getCell(4).getStringCellValue());
 			clientData.put("jan_quarter", row.getCell(5).getStringCellValue());
-			clientData.put("apr_quarter", row.getCell(6).getStringCellValue());
-			
+			clientData.put("apr_quarter", row.getCell(6).getStringCellValue());			
 
 		}
 		return clientData;		
