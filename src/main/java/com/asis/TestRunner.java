@@ -14,8 +14,7 @@ import com.asis.util.BaseClass;
 public class TestRunner {
 
 	/**
-	 * @param args
-	 * @throws InterruptedException 
+	 * @throws InterruptedException
 	 * @throws IOException 
 	 * @throws ParseException 
 	 */
