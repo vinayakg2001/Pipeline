@@ -23,7 +23,7 @@ import com.asis.QuaterData;
 public class BaseClass {
 	public WebDriver driver;
 	// File paths and names
-	public final String ATO_FILE_PATH ="C:\\Users\\AsisKaur\\OneDrive - The Outsource Pro\\Desktop";
+	public final String ATO_FILE_PATH ="C:\\Users\\vinay\\Downloads";
 	public final String ATO_FILE_NAME ="ATO_exel.xlsx";
 	public final String ATO_LOGIN_SHEET_NAME ="Login_detail";
 	public final String ATO_CLIENT_SHEET_NAME ="Client_data";
@@ -37,7 +37,7 @@ public class BaseClass {
 	
 	public static ArrayList<HashMap<String, Double>> LAST_TABLE_DATA = new ArrayList<>();
 	
-	public final String XERO_FILE_PATH ="C:\\Excel";
+	public final String XERO_FILE_PATH ="C:\\Users\\vinay\\Downloads";
 	public final String XERO_FILE_NAME ="XeroSheet.xlsx";
 	public final String XERO_LOGIN_SHEET_NAME ="Xero";
 	
