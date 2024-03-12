@@ -1,23 +1,20 @@
-package com.asis.util;
+package com.asis;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-public final class xeroexcel {
+public final class ExcelUtil {
 	// read excel
 	// read data from specific sheet
 	//return columns
@@ -26,17 +23,15 @@ public final class xeroexcel {
 	private static Row row;
 	private static Cell cell;
 	private static File file;
-
-	private xeroexcel() {
-
+	
+	private ExcelUtil() {
+		
 	}
-
+	
 	public static void readExcel(String filePath, String fileName) {
-
+		
 		file = new File(filePath+"\\"+fileName); 
-		//FileInputStream fin = null;
-
-
+		
 		String fileExtension = fileName.substring(fileName.indexOf("."));
 		if(fileExtension.equals(".xlsx")) {
 			try {
@@ -57,44 +52,33 @@ public final class xeroexcel {
 			}
 		}		
 	}
-
-	public static String[] getUserLoginDetail(String sheetName) {
+	
+	public static String getUserLoginDetail( String sheetName) {
 		sheet = workbook.getSheet(sheetName);
-		String[] cellValues = new String[2]; // Assuming you want to return two cell values
-
-		cellValues[0] = sheet.getRow(1).getCell(0).getStringCellValue(); // Username
-		cellValues[1] = sheet.getRow(1).getCell(1).getStringCellValue(); // Password
-
-		return cellValues;
+		return sheet.getRow(1).getCell(0).getStringCellValue();			
 	}
-
-	public static HashMap<String, String> getQuestAnsw( String sheetName) {
-		HashMap<String, String> questAns = new HashMap<>();
-
+	
+	public static HashMap<String, String> getClientDetail( String sheetName) {
+		//System.out.println(sheetName+ " "+ "ExcelUtil");
+		HashMap<String, String> clientData = new HashMap<>();
+		
 		sheet = workbook.getSheet(sheetName);
 		int rowCount = sheet.getLastRowNum() - sheet.getFirstRowNum();
-
+		
 		for(int i = 1; i <= rowCount; i++) {			
-			row = sheet.getRow(i);
-
-			questAns.put("Security_qa1", row.getCell(2).getStringCellValue());
-			questAns.put("Security_qa1_answer", row.getCell(3).getStringCellValue());
-			questAns.put("Security_qs2", row.getCell(4).getStringCellValue());
-			questAns.put("Security_qa2_answer", row.getCell(5).getStringCellValue());
-			questAns.put("Security_qs3", row.getCell(6).getStringCellValue());
-			questAns.put("Security_qa3_answer", row.getCell(7).getStringCellValue());
-			questAns.put("From date", row.getCell(8).toString());
-			questAns.put("To date", row.getCell(9).toString());
-//			System.out.println(row.getCell(8));
-//			System.out.println(row.getCell(2));
-
-			
-//			questAns.put("From date", row.getCell(8).toString());
-//			questAns.put("To date", row.getCell(9).toString());
+			row = sheet.getRow(i);			              
+			clientData.put("client_name", row.getCell(0).toString());
+			clientData.put("from_date", row.getCell(1).toString());
+			clientData.put("to_date", row.getCell(2).toString());
+			clientData.put("jul_quater", row.getCell(3).getStringCellValue());
+			clientData.put("oct_quarter", row.getCell(4).getStringCellValue());
+			clientData.put("jan_quarter", row.getCell(5).getStringCellValue());
+			clientData.put("apr_quarter", row.getCell(6).getStringCellValue());			
 
 		}
-		return questAns;		
-	}
+		return clientData;		
+	}	
+
 	public static void closeExcel() throws IOException {
 		workbook.close();
 	}
