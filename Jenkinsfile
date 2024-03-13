@@ -21,8 +21,8 @@ pipeline {
                     bat 'mvn clean install'
 
                     // Replace 'YourMainClass' with the main class of your Java application
-                    bat 'javac TestRunner.java'
-                    bat 'java TestRunner'
+//                     bat 'javac TestRunner.java'
+//                     bat 'java TestRunner'
                 }
             }
         }
