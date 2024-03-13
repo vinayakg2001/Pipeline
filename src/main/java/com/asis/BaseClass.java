@@ -72,7 +72,7 @@ public class BaseClass {
 	 * Method to setup WebDriver
 	 */
 	public void setupDriver() {
-		//System.out.println("Driver Setup Done");
+		System.out.println("Driver Setup Done");
 
 		driver  = new ChromeDriver();
 
