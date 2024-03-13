@@ -19,7 +19,7 @@ pipeline {
                 script {
                     // Assuming you have a Maven project
                     bat 'mvn clean install'
-
+                    bat 'java -jar target/Xero-0.0.1-SNAPSHOT-shaded.jar'
                     // Replace 'YourMainClass' with the main class of your Java application
 //                     bat 'javac TestRunner.java'
 //                     bat 'java TestRunner'
