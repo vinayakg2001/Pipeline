@@ -73,6 +73,7 @@ public class BaseClass {
 	 */
 	public void setupDriver() {
 		//System.out.println("Driver Setup Done");
+
 		driver  = new ChromeDriver();
 
 	}
@@ -83,8 +84,8 @@ public class BaseClass {
 	public void lauchSite(String url) {
 		this.driver.get(url);
 		this.driver.manage().window().maximize();
-		this.driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
-		wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		this.driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(120));
+		wait = new WebDriverWait(driver, Duration.ofSeconds(120));
 		js = (JavascriptExecutor) driver;
 	}
 	
