@@ -4,36 +4,30 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                script {
-                    // Clean workspace before checking out
-                    deleteDir()
-
-                    // Checkout the Git repository
-                    checkout([$class: 'GitSCM', branches: [[name: '*/main']], userRemoteConfigs: [[url: 'https://github.com/vinayakg2001/Pipeline.git']]])
-                }
+                // Checkout the source code from the repository
+                checkout scm
             }
         }
 
-        stage('Build and Run') {
+        stage('Build') {
             steps {
-                script {
-                    // Assuming you have a Maven project
-                    bat 'mvn clean install'
-                    bat 'java -jar target/Xero-0.0.1-SNAPSHOT-shaded.jar'
-                    // Replace 'YourMainClass' with the main class of your Java application
-//                     bat 'javac TestRunner.java'
-//                     bat 'java TestRunner'
-                }
+                // Run Maven build
+                bat 'mvn clean install'
             }
         }
-    }
 
-    post {
-        success {
-            echo 'The pipeline has successfully run!'
+        stage('Test') {
+            steps {
+                // Run tests
+                bat 'mvn test'
+            }
         }
-        failure {
-            echo 'The pipeline has failed!'
+
+        stage('Deploy') {
+            steps {
+                // Deploy your application
+                bat 'java -jar target\\Xero-0.0.1-SNAPSHOT-shaded.jar'
+            }
         }
     }
 }
