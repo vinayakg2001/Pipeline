@@ -26,7 +26,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 // Deploy your application
-                bat 'java -jar target\\Xero-0.0.1-SNAPSHOT-shaded.jar'
+                bat 'java -jar target//Xero-0.0.1-SNAPSHOT.jar'
             }
         }
     }
